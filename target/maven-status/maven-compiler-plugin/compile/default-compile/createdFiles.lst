@@ -1,0 +1,8 @@
+controlador\Insertar.class
+controlador\Borrar.class
+controlador\Consultar.class
+controlador\Modificar.class
+modelo\Departamento.class
+vista\MostrarDepartamentos.class
+conexion\HibernateUtil.class
+modelo\Empleado.class
