@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import controlador.Consultar;
-import modelo.Departamento;
+import modelo.Empleado;
 
 /**
  * Servlet implementation class EclipseServlet
@@ -23,8 +23,8 @@ import modelo.Departamento;
  * 
  * El servlet esta mapeado con anotaciones
  */
-@WebServlet("/MostrarDepartamentos")
-public class MostrarDepartamentos extends HttpServlet {
+@WebServlet("/MostrarEmpleados")
+public class MostrarEmpleados extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -32,7 +32,7 @@ public class MostrarDepartamentos extends HttpServlet {
 	 */
 	Consultar consultar;
 
-	public MostrarDepartamentos() {
+	public MostrarEmpleados() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -76,28 +76,56 @@ public class MostrarDepartamentos extends HttpServlet {
 	private PrintWriter printResponse(PrintWriter out, Map<String, String[]> parameterMap) {
 
 		PrintWriter pw = out;
-		List<Departamento> departamentos = consultar.listarDepartamentos();
+		List<Empleado> empleados = consultar.listarEmpleados();
 
 		pw.println("<html>");
-		pw.println("<title>Departamentos</title>");
+		pw.println("<title>Empleados</title>");
 		pw.println("<body>");
-		pw.println("<h1>Departamentos</h1>");
+		pw.println("<h1>Empleados</h1>");
 		pw.println("<table border=\"1\">");
 		pw.println("<tr>");
 		pw.println("<th>Código</th>");
 		pw.println("<th>Nombre</th>");
-		pw.println("<th>Código de responsable</th>");
+		pw.println("<th>Primer apellido</th>");
+		pw.println("<th>Segundo apellido</th>");
+		pw.println("<th>Lugar de nacimiento</th>");
+		pw.println("<th>Fecha de nacimiento</th>");
+		pw.println("<th>Dirección</th>");
+		pw.println("<th>Teléfono</th>");
+		pw.println("<th>Puesto</th>");
+		pw.println("<th>Código de departamento</th>");
 		pw.println("</tr>");
-		for (int i = 0; i < departamentos.size(); i++) {
+		for (int i = 0; i < empleados.size(); i++) {
 			pw.println("<tr>");
 			pw.println("<td>");
-			pw.print(departamentos.get(i).getCodigo());
+			pw.print(empleados.get(i).getCodigo());
 			pw.println("</td>");
 			pw.println("<td>");
-			pw.print(departamentos.get(i).getNombre());
+			pw.print(empleados.get(i).getNombre());
 			pw.println("</td>");
 			pw.println("<td>");
-			pw.print(departamentos.get(i).getCodResponsable());
+			pw.print(empleados.get(i).getApellido1());
+			pw.println("</td>");
+			pw.println("<td>");
+			pw.print(empleados.get(i).getApellido2());
+			pw.println("</td>");
+			pw.println("<td>");
+			pw.print(empleados.get(i).getLugarNacimiento());
+			pw.println("</td>");
+			pw.println("<td>");
+			pw.print(empleados.get(i).getFechaNacimiento());
+			pw.println("</td>");
+			pw.println("<td>");
+			pw.print(empleados.get(i).getDireccion());
+			pw.println("</td>");
+			pw.println("<td>");
+			pw.print(empleados.get(i).getTelefono());
+			pw.println("</td>");
+			pw.println("<td>");
+			pw.print(empleados.get(i).getPuesto());
+			pw.println("</td>");
+			pw.println("<td>");
+			pw.print(empleados.get(i).getCodDepartamento());
 			pw.println("</td>");
 			pw.println("</tr>");
 		}
