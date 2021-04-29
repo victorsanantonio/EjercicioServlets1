@@ -12,6 +12,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+
+import controlador.Borrar;
 import controlador.Consultar;
 import modelo.Departamento;
 
@@ -25,6 +29,7 @@ import modelo.Departamento;
  */
 @WebServlet("/MostrarDepartamentos")
 public class MostrarDepartamentos extends HttpServlet {
+	private static Logger logger = LogManager.getLogger(MostrarDepartamentos.class);
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -61,6 +66,7 @@ public class MostrarDepartamentos extends HttpServlet {
 		Map<String, String[]> parameterMap = request.getParameterMap();
 		printResponse(out, parameterMap);
 		out.close();
+		logger.info("Método GET ejecutado");
 	}
 
 	/**
@@ -71,6 +77,7 @@ public class MostrarDepartamentos extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
+		logger.info("Método POST ejecutado");
 	}
 
 	public PrintWriter printResponse(PrintWriter out, Map<String, String[]> parameterMap) {
@@ -104,7 +111,7 @@ public class MostrarDepartamentos extends HttpServlet {
 		pw.println("</table");
 		pw.println("</body>");
 		pw.println("</html>");
-
+		logger.info("Tabla de departamentos generada");
 		return pw;
 	}
 }

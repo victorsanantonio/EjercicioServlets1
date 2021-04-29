@@ -12,6 +12,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+
+import controlador.Borrar;
 import controlador.Consultar;
 import modelo.Departamento;
 import modelo.Empleado;
@@ -30,7 +34,7 @@ public class MostrarDatos extends HttpServlet {
 	MostrarDepartamentos mostrarDepartamentos;
 	MostrarEmpleados mostrarEmpleados;
 	Consultar consultar;
-	
+	private static Logger logger = LogManager.getLogger(MostrarDatos.class);
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -66,6 +70,7 @@ public class MostrarDatos extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		Map<String, String[]> parameterMap = request.getParameterMap();
 		String table = request.getParameter("table");
+		logger.info("Se ha introducido el parámetro: "+table);
 		if(table.equals("empleado")) {
 			printResponseE(out, parameterMap);
 		}
@@ -73,6 +78,7 @@ public class MostrarDatos extends HttpServlet {
 			printResponseD(out, parameterMap);
 		}
 		out.close();
+		logger.info("Método GET ejecutado");
 	}
 
 	/**
@@ -84,6 +90,7 @@ public class MostrarDatos extends HttpServlet {
 		// TODO Auto-generated method stub
 		
 		doGet(request, response);
+		logger.info("Método POST ejecutado");
 	}
 
 	public PrintWriter printResponseE(PrintWriter out, Map<String, String[]> parameterMap) {
@@ -145,7 +152,7 @@ public class MostrarDatos extends HttpServlet {
 		pw.println("</table");
 		pw.println("</body>");
 		pw.println("</html>");
-
+		logger.info("Tabla de empleados generada");
 		return pw;
 	}
 	
@@ -180,7 +187,7 @@ public class MostrarDatos extends HttpServlet {
 		pw.println("</table");
 		pw.println("</body>");
 		pw.println("</html>");
-
+		logger.info("Tabla de departamentos generada");
 		return pw;
 	}
 }
