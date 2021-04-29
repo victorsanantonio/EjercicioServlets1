@@ -73,7 +73,7 @@ public class MostrarEmpleados extends HttpServlet {
 		doGet(request, response);
 	}
 
-	private PrintWriter printResponse(PrintWriter out, Map<String, String[]> parameterMap) {
+	public PrintWriter printResponse(PrintWriter out, Map<String, String[]> parameterMap) {
 
 		PrintWriter pw = out;
 		List<Empleado> empleados = consultar.listarEmpleados();
